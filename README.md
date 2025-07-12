@@ -128,6 +128,8 @@ python python/olap.py database.bin
 
 ```
 
+python3 python/olap.py database.bin 
+
 Roll-up (moyenne des salaires par secteur et année):
 Secteur                                                  | Année | Salaire moyen     
 -------------------------------------------------------------------------------------
@@ -151,8 +153,43 @@ Seconded (Solicitor General)*                            | 2024  | 134213.202499
 Seconded (Tourism, Culture and Sport)*                   | 2024  | 164468.33333333334
 Universities                                             | 2024  | 162657.09051503617
 
-Drill-down (moyenne des salaires par employeur dans le secteur Technologie):
-Aucune donnée trouvée.
+Drill-down (moyenne des salaires par employeur dans le secteur Universities):
+Employeur                                    | Année | Salaire moyen     
+-------------------------------------------------------------------------
+Algoma University                            | 2024  | 145674.2580110497 
+Brescia University College                   | 2024  | 120538.5          
+Brock University                             | 2024  | 170945.3414164306 
+Carleton University                          | 2024  | 155391.6969314542 
+Huron University College                     | 2024  | 138808.13626506025
+King’s University College                    | 2024  | 150696.33846715328
+Lakehead University                          | 2024  | 151953.95012254902
+Laurentian University Of Sudbury             | 2024  | 147515.09188356163
+McMaster Divinity College                    | 2024  | 148712.6          
+McMaster University                          | 2024  | 165949.82228272827
+Nipissing University                         | 2024  | 148424.1335151515 
+Northern Ontario School Of Medicine          | 2024  | 149445.73         
+Ontario College Of Art And Design University | 2024  | 127792.44913636363
+Ontario Tech University                      | 2024  | 156153.29437037036
+Queen’s University                           | 2024  | 172498.18844745762
+Saint Paul University                        | 2024  | 125496.5334375    
+St. Jerome’s University                      | 2024  | 167832.72282051283
+St. Peter’s Seminary                         | 2024  | 130812.41400000002
+Toronto Metropolitan University              | 2024  | 163716.77177260982
+Trent University                             | 2024  | 152701.80087167068
+Trinity College                              | 2024  | 140294.0521875    
+Universite De L’Ontario Francais             | 2024  | 142631.14         
+University Of Guelph                         | 2024  | 157305.93032036614
+University Of Ottawa                         | 2024  | 164561.53466131905
+University Of St. Michael’s College          | 2024  | 157171.36289473684
+University Of Sudbury                        | 2024  | 171057.665        
+University Of Toronto                        | 2024  | 163159.43541618163
+University Of Waterloo                       | 2024  | 163925.40419153677
+University Of Western Ontario                | 2024  | 164741.23444503738
+University Of Windsor                        | 2024  | 152353.42114478117
+Université De Hearst                         | 2024  | 133438.21476190476
+Victoria University                          | 2024  | 142360.26704225352
+Wilfrid Laurier University                   | 2024  | 157465.20611601515
+York University                              | 2024  | 173237.03144227221
 
 Dice (salaires des employés avec 'software' dans le titre pour employeurs commençant par 'Ontario'):
 Nom               | Prénom          | Employeur                                                 | Salaire  
@@ -293,10 +330,10 @@ Cette requête calcule le salaire moyen par secteur et par année. Elle regroupe
 SELECT e.employer_name, s.year, AVG(s.salary) as average_salary
 FROM salaries s
 JOIN employers e ON s.employer_id = e.employer_id
-WHERE e.sector = 'Technologie'
+WHERE e.sector = 'Universities'
 GROUP BY e.employer_name, s.year
 ```
-Cette requête affine l'analyse en calculant le salaire moyen par employeur et par année, mais uniquement pour le secteur "Technologie". Elle permet d'identifier les employeurs les plus rémunérateurs dans ce secteur spécifique.
+Cette requête affine l'analyse en calculant le salaire moyen par employeur et par année, mais uniquement pour le secteur "Universities". Elle permet d'identifier les employeurs les plus rémunérateurs dans ce secteur spécifique.
 
 ### 3. Dice (Sous-ensemble : employeurs "Ontario" et titres "software")
 ```sql

@@ -42,11 +42,11 @@ def perform_olap_operations(db_name):
     SELECT e.employer_name, s.year, AVG(s.salary) as average_salary
     FROM salaries s
     JOIN employers e ON s.employer_id = e.employer_id
-    WHERE e.sector = 'Technologie'
+    WHERE e.sector = 'Universities'
     GROUP BY e.employer_name, s.year
     """
     cursor.execute(drill_down_query)
-    print("\nDrill-down (moyenne des salaires par employeur dans le secteur Technologie):")
+    print("\nDrill-down (moyenne des salaires par employeur dans le secteur Universities):")
     print_table(cursor.fetchall(), ["Employeur", "Année", "Salaire moyen"])
     
     # Dice: Sélection d'un sous-ensemble spécifique (salaires pour employeurs 'Ontario' et titres 'software')
